@@ -1,4 +1,6 @@
-# Django settings for mailchimp_demo project.
+import os
+
+PROJECT_ROOT = os.path.dirname(__file__)
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,14 +13,20 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': u'%s/bananas.db' % PROJECT_ROOT, # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
 }
+
+MAILCHIMP_CLIENT_ID = 'YOUR_CLIENT_ID'
+MAILCHIMP_CLIENT_SECRET = 'YOUR_CLIENT_SECRET'
+MAILCHIMP_REDIRECT_URI = 'http://127.0.0.1:8000/bananas/ripe/'
+MAILCHIMP_COMPLETE_URI = 'http://127.0.0.1:8000/profile/'
+
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -100,6 +108,16 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth"
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.request",
+    "django.contrib.messages.context_processors.messages"
+)
+
 ROOT_URLCONF = 'mailchimp_demo.urls'
 
 TEMPLATE_DIRS = (
@@ -119,6 +137,10 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+
+    'banana_py',
+
+    'common',
 )
 
 # A sample logging configuration. The only tangible logging
