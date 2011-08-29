@@ -7,7 +7,6 @@ way.
 
     MAILCHIMP_CLIENT_ID
     MAILCHIMP_CLIENT_SECRET
-    MAILCHIMP_COMPLETE_URI
 
 3. On MailChimp.com, in your app settings, make sure you have `http://127.0.0.1` as your `redirect_uri` setting.
 
