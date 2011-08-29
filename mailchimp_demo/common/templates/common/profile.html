@@ -1,0 +1,15 @@
+<h1>My Awesome Website</h1>
+
+<h1>Yay, it worked! oauth token details:</h1>
+
+<ul>
+{% for key, value in request.session.mailchimp_details.items %}
+	<li>[{{ key }}] => {{ value }}</li>
+{% endfor  %}
+</ul>
+
+<p>Putting all of that data together, you can now use that to either:</p>
+<ol>
+	<li>Configure the endpoint in your application to {{ request.session.mailchimp_details.api_endpoint }}</li>
+	<li>Create a standard formatted API Key using the OAuth2 access token ({{ request.session.mailchimp_details.access_token }}) and the data center ({{ request.session.mailchimp_details.dc }}): <strong>{{ request.session.mailchimp_details.access_token }}-{{ request.session.mailchimp_details.dc }}</strong> which can be passed into most API wrappers.</li>
+</ol>
